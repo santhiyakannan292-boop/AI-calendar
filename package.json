@@ -1,0 +1,17 @@
+{
+  "name": "contentpilot-ai-monorepo",
+  "version": "1.0.0",
+  "description": "ContentPilot AI - AI Social Media Content Calendar for Small Businesses",
+  "scripts": {
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "build": "npm run build --prefix server && npm run build --prefix client",
+    "start": "concurrently \"npm run start --prefix server\" \"npm run preview --prefix client\"",
+    "dev": "concurrently -k -p \"[{name}]\" -n \"SERVER,CLIENT\" -c \"blue.bold,cyan.bold\" \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "db:migrate": "cd server && npx prisma migrate dev",
+    "db:seed": "cd server && npx tsx prisma/seed.ts",
+    "test": "cd server && npm test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
